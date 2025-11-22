@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доступ заблокирован</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0f0f23;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .container {
+            background: rgba(26, 26, 46, 0.95);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 107, 107, 0.1);
+            max-width: 600px;
+            width: 100%;
+            padding: 48px;
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 40px rgba(255, 107, 107, 0.7);
+            }
+        }
+        
+        .icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .error-code {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        p {
+            color: #b8b8d1;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        
+        .details {
+            background: rgba(15, 15, 35, 0.6);
+            border: 1px solid rgba(255, 107, 107, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+        
+        .details-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 107, 107, 0.1);
+        }
+        
+        .details-item:last-child {
+            border-bottom: none;
+        }
+        
+        .details-label {
+            color: #8b8ba7;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .details-value {
+            color: #ff6b6b;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255, 107, 107, 0.6);
+        }
+        
+        .footer {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 107, 107, 0.1);
+            color: #6b6b8a;
+            font-size: 14px;
+        }
+        
+        .footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer strong {
+            color: #ff9a76;
+        }
+        
+        @media (max-width: 640px) {
+            .container {
+                padding: 32px 24px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .icon {
+                width: 64px;
+                height: 64px;
+            }
+            
+            .icon svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 2L1 21h22L12 2zm1 16h-2v-2h2v2zm0-4h-2v-6h2v6z"/>
+            </svg>
+        </div>
+        
+        <h1>Доступ заблокирован</h1>
+        
+        <div class="error-code">HTTP 403 - Forbidden</div>
+        
+        <p>
+            Ваш запрос был заблокирован системой защиты веб-приложения (WAF). 
+            Это могло произойти из-за подозрительной активности или нарушения правил безопасности.
+        </p>
+        
+        <div class="details">
+            <div class="details-item">
+                <span class="details-label">Ray ID:</span>
+                <span class="details-value" id="rayId">{{RAY_ID}}</span>
+            </div>
+            <div class="details-item">
+                <span class="details-label">Ваш IP:</span>
+                <span class="details-value" id="clientIp">{{CLIENT_IP}}</span>
+            </div>
+            <div class="details-item">
+                <span class="details-label">Время:</span>
+                <span class="details-value" id="timestamp"></span>
+            </div>
+        </div>
+        
+        <a href="/" class="button">Вернуться на главную</a>
+        
+        <div class="footer">
+            Если вы считаете, что это ошибка, свяжитесь с <a href="mailto:support@example.com">поддержкой</a>
+            <br><br>
+            Защищено <strong>Cloudflare</strong>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString('ru-RU');
+        
+        if (document.getElementById('rayId').textContent === '{{RAY_ID}}') {
+            document.getElementById('rayId').textContent = 'N/A';
+        }
+        if (document.getElementById('clientIp').textContent === '{{CLIENT_IP}}') {
+            document.getElementById('clientIp').textContent = 'N/A';
+        }
+    </script>
+</body>
+</html>
