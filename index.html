@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Доступ заблокирован</title>
+    <title>Ddosphera.su - Проверка безопасности</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,102 +15,106 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Unbounded', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .fireflies {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .firefly {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+        
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30vw, 20vh); }
+            50% { transform: translate(10vw, 40vh); }
+            75% { transform: translate(40vw, 10vh); }
+        }
+        
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-20vw, 30vh); }
+            50% { transform: translate(-40vw, 10vh); }
+            75% { transform: translate(-10vw, 35vh); }
+        }
+        
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(15vw, -20vh); }
+            50% { transform: translate(35vw, -10vh); }
+            75% { transform: translate(5vw, -25vh); }
+        }
+        
+        @keyframes float4 {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-30vw, -15vh); }
+            50% { transform: translate(-10vw, -30vh); }
+            75% { transform: translate(-25vw, -5vh); }
         }
         
         .container {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
             max-width: 600px;
             width: 100%;
-            padding: 48px;
+            padding: 60px 40px;
             text-align: center;
-            animation: slideIn 0.5s ease-out;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-        
-        .icon svg {
-            width: 40px;
-            height: 40px;
-            fill: white;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
         h1 {
-            font-size: 32px;
-            color: #1a202c;
-            margin-bottom: 16px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 48px;
             font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
         }
         
-        .error-code {
-            display: inline-block;
-            background: #fed7d7;
-            color: #c53030;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-        
-        p {
-            color: #4a5568;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 32px;
+        .captcha-container {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .details {
-            background: #f7fafc;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(30, 30, 30, 0.4);
             border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 32px;
             text-align: left;
         }
         
         .details-item {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .details-item:last-child {
@@ -115,91 +122,38 @@
         }
         
         .details-label {
-            color: #718096;
+            color: #888;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 400;
         }
         
         .details-value {
-            color: #2d3748;
+            color: #fff;
             font-size: 14px;
             font-family: 'Courier New', monospace;
             font-weight: 600;
         }
         
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-        
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-        
-        .footer {
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid #e2e8f0;
-            color: #a0aec0;
-            font-size: 14px;
-        }
-        
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        
         @media (max-width: 640px) {
             .container {
-                padding: 32px 24px;
+                padding: 40px 24px;
             }
             
             h1 {
-                font-size: 24px;
-            }
-            
-            .icon {
-                width: 64px;
-                height: 64px;
-            }
-            
-            .icon svg {
-                width: 32px;
-                height: 32px;
+                font-size: 32px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="fireflies" id="fireflies"></div>
+    
     <div class="container">
-        <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
+        <h1>Ddosphera.su</h1>
+        
+        <div class="captcha-container">
+            ::CAPTCHA_BOX::
         </div>
-        
-        <h1>Доступ заблокирован</h1>
-        
-        <div class="error-code">HTTP 403 - Forbidden</div>
-        
-        <p>
-            Ваш запрос был заблокирован системой защиты веб-приложения (WAF). 
-            Это могло произойти из-за подозрительной активности или нарушения правил безопасности.
-        </p>
         
         <div class="details">
             <div class="details-item">
@@ -207,27 +161,49 @@
                 <span class="details-value" id="rayId">{{RAY_ID}}</span>
             </div>
             <div class="details-item">
-                <span class="details-label">Ваш IP:</span>
+                <span class="details-label">IP Address:</span>
                 <span class="details-value" id="clientIp">{{CLIENT_IP}}</span>
             </div>
             <div class="details-item">
-                <span class="details-label">Время:</span>
+                <span class="details-label">Timestamp:</span>
                 <span class="details-value" id="timestamp"></span>
             </div>
-        </div>
-        
-        ::CAPTCHA_BOX::
-        
-        <a href="/" class="button">Вернуться на главную</a>
-        
-        <div class="footer">
-            Если вы считаете, что это ошибка, свяжитесь с <a href="mailto:support@example.com">поддержкой</a>
-            <br><br>
-            Защищено <strong>Cloudflare</strong>
         </div>
     </div>
     
     <script>
+        function createFireflies() {
+            const container = document.getElementById('fireflies');
+            const fireflyCount = 15;
+            const animations = ['float1', 'float2', 'float3', 'float4'];
+            
+            for (let i = 0; i < fireflyCount; i++) {
+                const firefly = document.createElement('div');
+                firefly.className = 'firefly';
+                
+                const leftPos = Math.random() * 60 + 20;
+                const topPos = Math.random() * 60 + 20;
+                firefly.style.left = leftPos + '%';
+                firefly.style.top = topPos + '%';
+                
+                const animName = animations[Math.floor(Math.random() * animations.length)];
+                firefly.style.animation = `${animName} ${Math.random() * 10 + 8}s infinite ease-in-out`;
+                firefly.style.animationDelay = Math.random() * 5 + 's';
+                
+                const size = Math.random() * 150 + 100;
+                firefly.style.width = size + 'px';
+                firefly.style.height = size + 'px';
+                
+                const blur = Math.random() * 40 + 60;
+                firefly.style.filter = `blur(${blur}px)`;
+                
+                const colors = ['#ffffff', '#cccccc', '#aaaaaa', '#dddddd'];
+                firefly.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(firefly);
+            }
+        }
+        
         document.getElementById('timestamp').textContent = new Date().toLocaleString('ru-RU');
         
         if (document.getElementById('rayId').textContent === '{{RAY_ID}}') {
@@ -236,6 +212,8 @@
         if (document.getElementById('clientIp').textContent === '{{CLIENT_IP}}') {
             document.getElementById('clientIp').textContent = 'N/A';
         }
+        
+        createFireflies();
     </script>
 </body>
 </html>
